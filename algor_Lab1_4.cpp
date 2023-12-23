@@ -8,31 +8,21 @@ int main(){
     for(int i=0;i<n;i++){
         cin>>arr[i];
     }
-    int differ = arr[0];
+    bool minmax = true;
+    bool maxmin = true;
+    for(int i=1;i<n;i++){
+        if(arr[i-1]>arr[i]){
+            minmax = false;
+        }
+        if(arr[i-1]<arr[i]){
+            maxmin = false;
+        }   
+    }
 
-    if(arr[0]<arr[1]){
-        for(int i=1;i<n;i++){
-            if(differ<arr[i]){
-                differ = arr[i];
-            }
-            else{
-                temp = false;
-                break;
-            }
-        }
+    if(minmax){
+        cout<<"yes";
     }
-    else if(arr[0]>arr[1]){
-        for(int i=1;i<n;i++){
-            if(differ>arr[i]){
-                differ = arr[i];
-            }
-            else{
-                temp = false;
-                break;
-            }
-        }
-    }
-    if(temp){
+    else if(maxmin){
         cout<<"yes";
     }
     else{
