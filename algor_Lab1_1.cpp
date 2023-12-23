@@ -54,7 +54,6 @@ int main()
 
 	heapSort(arr, n);
     int count = 1;
-    int temp = 0;
     for(int i=1;i<n;i++){
         if(arr[i-1]!=arr[i]-1){
             count++;
