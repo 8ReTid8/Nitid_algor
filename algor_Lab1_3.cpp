@@ -13,11 +13,12 @@ int main(){
     }
     int Max = 0;
     int Max_val = 0;
-    int MaxA;
-    int MaxB;
+   
 
     for(int i=0;i<n;i++){
-        for(int j=0;j<n;i++){
+        int MaxA = 0;
+        int MaxB = 0;
+        for(int j=0;j<n;j++){
             if(a[i]==a[j]||a[i]==b[j]){
                 MaxA++;
             }
