@@ -1,65 +1,56 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-void buildMaxHeap(int arr[], int n) 
-{ 
-	for (int i = 1; i < n; i++) 
-	{
-		
-		if (arr[i] > arr[(i - 1) / 2]) 
-		{
-			int j = i;
-			while (arr[j] > arr[(j - 1) / 2]) 
-			{
-				swap(arr[j], arr[(j - 1) / 2]);
-				j = (j - 1) / 2;
-			}
-		}
-	}
-}
-
-void heapSort(int arr[], int n) 
-{
-	buildMaxHeap(arr, n);
-
-	for (int i = n - 1; i > 0; i--)
-	{
-		swap(arr[0], arr[i]);
-		int j = 0, index;
-		do
-		{
-			index = (2 * j + 1);
-			if (arr[index] < arr[index + 1] && index < (i - 1))
-				index++;
-
-			if (arr[j] < arr[index] && index < i)
-				swap(arr[j], arr[index]);
-		
-			j = index;
-		
-		} while (index < i);
-	}
-}
-
-
-int main() 
-{
-
-	int n;
+int main(){
+    int n;
     cin>>n;
-    int arr[n];
+    int a[n];
+    int b[n];
+    int Intersect[n];
+    int Union[n+n];
+    int countUn = 0;
     for(int i=0;i<n;i++){
-        cin>>arr[i];
+        bool temp = true;
+        cin>>a[i];
+        for(int j=0;j<countUn;j++){
+            if(a[i]==Union[j]){
+                temp = false;
+            }
+        }
+        if(temp){
+            Union[countUn] = a[i];
+            countUn++;
+        }
+    }
+    for(int i=0;i<n;i++){
+        cin>>b[i];
+    }
+    
+    int oldcountUn = countUn;
+    for(int i=0;i<n;i++){
+        bool temp = true;
+        for(int j=0;j<n;j++){
+            if(b[i]==Union[j]){
+                temp = false;
+            }
+        }
+        if(temp){
+            bool checkU = true;
+            for(int k=oldcountUn;k<countUn;k++){
+                if(b[i]==Union[k]){
+                    checkU = false;
+                }
+            }
+            if(checkU){
+                Union[countUn] = b[i];
+                countUn++;
+            }
+            
+        }
     }
 
-	heapSort(arr, n);
-    int count = 1;
-    int temp = 0;
-    for(int i=1;i<n;i++){
-        if(arr[i-1]!=arr[i]-1){
-            count++;
-        }
-    }	
-    cout<<count<<endl;
-	return 0;
+
+    for(int i=0;i<countUn;i++){
+        cout<<Union[i]<<" ";
+    }
+    return 0;
 }
