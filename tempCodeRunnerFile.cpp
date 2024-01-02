@@ -1,39 +1,42 @@
-#include <bits/stdc++.h>
+ #include <bits/stdc++.h>
 using namespace std;
-
-int Partition(int arr[],int l,int r){
-    int p = arr[l];
-    int i = l;
-    int j = r+1;
+int Partition(int ar[],int l,int r){
+    int p = ar[l];
+    int i  = l;
+    int j = r + 1;
     do{
         do{
-            i+=1;
-        }while(arr[i]<p);
+            i=i+1;
+        }while(ar[i] < p);
         do{
-            j-=1;
-        }while(arr[j]>p);
-        swap(arr[i],arr[j]);
-    }while(i<j);
-    swap(arr[i],arr[j]);
-    swap(arr[l],arr[j]);
+            j=j-1;
+        }while(ar[j]>p);
+        swap(ar[i],ar[j]);
+    }while(i < j);
+    swap(ar[i],ar[j]);
+    swap(ar[l],ar[j]);
     return j;
 }
-
-void Quicksort(int arr[],int l,int r){
-    if(l<r){
-        int s = Partition(arr,l,r);
-        Quicksort(arr,l,s-1);
-        Quicksort(arr,s+1,r);
+void quickSort(int ar[],int l,int r){
+    int s=0;
+    if(l < r){
+        s=Partition(ar,l,r);
+        quickSort(ar,l,s-1);
+        quickSort(ar,s+1,r);
     }
 }
 
 int main(){
-    int a[] = {16,25,2,54,36,9,12,66};
-    int l = 0;
-    int r = sizeof(a)/sizeof(a[0])-1;
-    Quicksort(a,l,r);
-    for(int i=0;i<r+1;i++){
-        cout<<a[i]<<" ";
+    int n;
+    cin >> n;
+    int *ar = new int[n];
+    int i =0;
+    while(i < n){
+        cin >> ar[i];
+        i++;
     }
-    return 0;
+    quickSort(ar,0,n-1);
+    for(int i =0;i<n;i++){
+        cout << ar[i] << " ";
+    }
 }

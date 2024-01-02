@@ -1,62 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void UNcheck(int &n,int start,int U[],int value){
-    bool check = true;
-    for(int i=start;i<n;i++){
-        if(value == U[i]){
-            check = false;
-        }
-    }
-    if(check){
-        U[n] = value;
-        n++;
+int Partition(int arr[],int l,int r){
+    int p = arr[l];
+    int i = l;
+    int j = r+1;
+    do{
+        do{
+            i+=1;
+        }while(arr[i]<p);
+        do{
+            j-=1;
+        }while(arr[j]>p);
+        swap(arr[i],arr[j]);
+    }while(i<j);
+    swap(arr[i],arr[j]);
+    swap(arr[l],arr[j]);
+    return j;
+}
+
+void Quicksort(int arr[],int l,int r){
+    if(l<r){
+        int s = Partition(arr,l,r);
+        Quicksort(arr,l,s-1);
+        Quicksort(arr,s+1,r);
     }
 }
 
 int main(){
-    int n;
-    cin>>n;
-    int a[n];
-    int b[n];
-    int Intersect[n];
-    int Union[n+n];
-    int countUn = 0;
-    int countInter = 0;
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-        UNcheck(countUn,0,Union,a[i]);
-    }
-    for(int i=0;i<n;i++){
-        cin>>b[i];
-    }
-    
-    int oldcountUn = countUn;
-    for(int i=0;i<n;i++){
-        bool tempUn = true;
-        bool tempInter = false;
-        for(int j=0;j<n;j++){
-            if(b[i]==Union[j]){
-                tempUn = false;
-            }
-            if(a[i]==b[j]){
-                tempInter = true;
-            }
-        }
-        if(tempUn){
-            UNcheck(countUn,oldcountUn,Union,b[i]);
-        }
-        if(tempInter){
-            UNcheck(countInter,0,Intersect,a[i]);
-        }
-    }
-
-    for(int i=0;i<countInter;i++){
-        cout<<Intersect[i]<<" ";
-    }
-    cout<<endl;
-    for(int i=0;i<countUn;i++){
-        cout<<Union[i]<<" ";
+    int a[] = {16,25,2,54,36,9,12,66};
+    int l = 0;
+    int r = sizeof(a)/sizeof(a[0])-1;
+    Quicksort(a,l,r);
+    for(int i=0;i<r+1;i++){
+        cout<<a[i]<<" ";
     }
     return 0;
 }
