@@ -5,7 +5,7 @@ void merge(int arr[],int l,int m,int r){
     int n1 = m - l + 1;
     int n2 = r - m;
     int L[n1], R[n2];
-
+    
     for (i = 0; i < n1; i++){
         L[i] = arr[l + i];
     }
@@ -13,7 +13,6 @@ void merge(int arr[],int l,int m,int r){
         R[j] = arr[m + 1 + j];
     }
 
-    i=0,j=0; 
     while (i < n1 && j < n2){ 
         if(L[i] <= R[j]){ 
             arr[k] = L[i];
@@ -25,6 +24,7 @@ void merge(int arr[],int l,int m,int r){
         }
         k++;
     }
+
     while(i < n1) // copy left sub-array
     { 
         arr[k] = L[i];
@@ -47,6 +47,8 @@ void mergesort(int arr[],int l,int r){
         merge(arr,l,m,r);
     }
 }
+
+
 int Partition(int arr[],int l,int r){
     int p = arr[l];
     int i = l;
@@ -76,8 +78,9 @@ void Quicksort(int arr[],int l,int r){
 }
 
 int main(){
-    int a[] = {16,25,2,54,36,9,12,66};
-    // int a[] = {4,3,2,1};
+    // int a[] = {16,25,2,54,36,9,12,66};
+    // int a[] = {4,3,8,2,1};
+    int a[] = {4,3,2,1};
     int l = 0;
     int r = sizeof(a)/sizeof(a[0])-1;
     // Quicksort(a,l,r);
