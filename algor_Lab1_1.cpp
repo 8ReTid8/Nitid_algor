@@ -63,7 +63,7 @@ void merge(int arr[],int l,int m,int r){
     for (j = 0; j < n2; j++){
         R[j] = arr[m + 1 + j];
     }
-
+    i=0,j=0;
     while (i < n1 && j < n2){ 
         if(L[i] <= R[j]){ 
             arr[k] = L[i];
@@ -89,10 +89,6 @@ void merge(int arr[],int l,int m,int r){
         j++;
         k++;
     }
-	for(int i=0;i<r+1;i++){
-		cout<<arr[i]<<" ";
-	}
-	cout<<endl;
 
 }
 void mergesort(int arr[],int l,int r){
@@ -121,11 +117,6 @@ int main()
 	int l=0;
 	int r=n-1;
 	mergesort(a,l,r);
-	for(int i=0;i<n;i++){
-		cout<<a[i]<<" ";
-	}
-	cout<<endl;
-	
 	int count = 1;
 	for (int i = 1; i < n; i++)
 	{

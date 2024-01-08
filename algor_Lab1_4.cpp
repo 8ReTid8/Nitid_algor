@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-bool check(int arr[],int n,int i=1){
-    if(n==i){
+bool check(int arr[],int n){
+    if(n==0){
         return true;
     }
-    else if(arr[i-1]<=arr[i]){
-        return check(arr,n,i+1);
+    else if(arr[n-1]<=arr[n]){
+        return check(arr,n-1);
     }
     else{
         return false;
@@ -23,14 +23,14 @@ int main()
         cin >> arr[i];
     }
 
-    bool checksort = check(arr,n);
+    bool checksort = check(arr,n-1);
     
     if (checksort)
     {
-        cout << "yes";
+        cout << "Yes";
     }
     else
     {
-        cout << "no";
+        cout << "No";
     }
 }
