@@ -84,7 +84,9 @@ int main(){
     //         UNcheck(countInter,0,Intersect,a[i]);
     //     }
     // }
+
     counting(a,b,n,Intersect,Union,countUn,countInter);
+    
     for(int i=0;i<countInter;i++){
         cout<<Intersect[i]<<" ";
     }
