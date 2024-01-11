@@ -22,7 +22,6 @@ vector<int> countsort(vector<int> arr){
 }
 int main(){
     vector<int> arr = {1,5,3,4,2};
-    // int arr[] = {1,5,3,4,2};
     arr = countsort(arr);
     for(int i=0;i<5;i++){
         cout<<arr[i]<<" ";
