@@ -45,6 +45,7 @@ void counting(int a[],int b[],int n,int Intersect[],int Union[],int& un,int& in)
         if(countingB[b[i]]>0){
             Union[un] = b[i];
             un++;
+            countingB[b[i]] = 0;
         } 
     }
     
