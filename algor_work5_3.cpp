@@ -26,6 +26,7 @@ void counting(int a[],int b[],int n,int Intersect[],int Union[],int& un,int& in)
         countingB[b[i]]++;
     }
 
+
     for(int i=0;i<n;i++){
         if(countingA[a[i]]>0 && countingB[a[i]]>0){
             Intersect[in] = a[i];
@@ -36,6 +37,7 @@ void counting(int a[],int b[],int n,int Intersect[],int Union[],int& un,int& in)
         if(countingA[a[i]]>0){
             Union[un] = a[i];
             un++;
+            countingA[a[i]] = 0;
             countingB[a[i]] = 0;
         }   
     }
