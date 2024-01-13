@@ -74,7 +74,6 @@ void countmaxsame(string s){
     for (int i = 0; i < s.length()-1; i++) {
         if (s[i] == s[i+1]) {
             freq++;
-            // maxFreq = (freq > maxFreq) ? freq : maxFreq;
             if(freq>maxFreq){
                 maxFreq = freq;
             }
