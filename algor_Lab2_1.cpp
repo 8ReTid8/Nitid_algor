@@ -6,8 +6,7 @@ int interpolationSearch(int arr[], int l, int r, int k)
 {
 	int x;
 
-	if (l <= r && k >= arr[l] && k <= arr[r]) {
-
+	if (l <= r) {
 		x = l + (((r - l)*(k - arr[l])) / (arr[r] - arr[l]));
         cout<<x<<" ";
 
