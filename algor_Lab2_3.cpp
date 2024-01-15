@@ -26,24 +26,25 @@ vector<int> countsort(vector<int> arr)
     return sortarr;
 }
 
-int binary_search(vector<int> a, int n, int k,int find,int count,int ans[])
+int binary_search(vector<int> a, int n, int k,int loop,int& count,int ans[])
 {
     int l = 0, r = (n - 1);
 
     while (l <= r)
     {
         int mid = (l + r) / 2;
-        int tar = a[mid];
-        if ((tar + find == k) && (abs(find-a[mid])<count) )
-            ans[0] = min(find,a[mid]);
-            ans[1] = max(find,a[mid]);
-            count = abs(find-a[mid]);
-            cout<<a[mid]+find<<endl;
-            return count;
-        if (tar+find < k)
+        if ((a[mid] + a[loop] == k) && (abs(a[loop]-a[mid])<count) && mid!=loop){
+            ans[0] = min(a[loop],a[mid]);
+            ans[1] = max(a[loop],a[mid]);
+            count = abs(a[loop]-a[mid]);
+            return 0;
+        }
+        if (a[mid]+a[loop] < k){
             l = mid + 1;
-        else
+        }
+        else{
             r = mid - 1;
+        }
     }
 
     return -1;
@@ -61,12 +62,9 @@ int main()
         cin >> arr[i];
     }
     arr = countsort(arr);
+   
     for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-    cout<<endl;
-    for(int i=0;i<n;i++){
-        count = binary_search(arr,n,k,arr[i],count,ans);
+        binary_search(arr,n,k,i,count,ans);
     }
     cout<<ans[0]<<" "<<ans[1];
     return 0;
