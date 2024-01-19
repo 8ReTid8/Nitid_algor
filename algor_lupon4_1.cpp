@@ -49,7 +49,7 @@ void findK(int A[], int M, int k, int n)
 int main()
 {
     int A[] = {10, 12, 15, 17, 18, 20, 25};
-    int M = 16, k = 2;
+    int M = 30, k = 5;
     int n = sizeof(A)/sizeof(A[0]);
     A[-1] = INT_MAX;
     A[n] = INT_MAX;
