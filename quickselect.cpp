@@ -8,13 +8,13 @@ int partition(int l,int r,int arr[]){
     if(arr[c]>arr[r]){
         swap(arr[c],arr[r]);
     }
-    // if(arr[l]>arr[r]){
-    //     swap(arr[l],arr[r]);
-    // }
-    if(arr[l]>arr[c]){
-        swap(arr[l],arr[c]);
+    if(arr[l]>arr[r]){
+        swap(arr[l],arr[r]);
     }
-    swap(arr[c],arr[r]);
+    // if(arr[l]>arr[c]){
+    //     swap(arr[l],arr[c]);
+    // }
+    // swap(arr[c],arr[r]);
 
     int pivot = arr[r];
     int i = (l-1);
@@ -25,10 +25,6 @@ int partition(int l,int r,int arr[]){
         }
     }
     swap(arr[i+1],arr[r]);
-    for(int k=0;k<9;k++){
-        cout<<arr[k]<<" ";
-    }
-    cout<<"i+1 = "<<i+1<<endl;
     return i+1;
 }
 int quickselect(int low,int high,int k,int arr[]){
@@ -51,7 +47,7 @@ int quickselect(int low,int high,int k,int arr[]){
 int main(){
     int arr[] = {1,5,10,4,8,2,6,9,20};
     int n = sizeof(arr)/sizeof(arr[0]);
-    int k = 4;
+    int k = 5;
     cout<<quickselect(0,n-1,k-1,arr);
     return 0;
 }
