@@ -1,118 +1,85 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-vector<int> countsort(vector<int> arr){
-    int n = arr.size();
-    int m = 0;
-    for(int i=0;i<n;i++){
-        m = max(m,arr[i]);
-    }
-    vector<int> countarr(m+1);
-    for(int i=0;i<n;i++){
-        countarr[arr[i]]++;
-    }
-    for(int i=1;i<m+1;i++){
-        countarr[i]+=countarr[i-1];
-    }
-    vector<int> sortarr(n);
-    for(int i=0;i<n;i++){
-        countarr[arr[i]]--;
-        sortarr[countarr[arr[i]]] = arr[i];
-    }
-    return sortarr;
-}
-
-string changetostr(vector<int> arr){
-    stringstream ss("");
-    for (int i = 0; i < arr.size(); i++) 
+void wow(int x[], int k)
+{
+    for (int i = 0; i < k; i++)
     {
-        ss << arr[i];
+        cout << x[i] << " ";
     }
-    return ss.str();
+    cout << endl;
 }
-
-string popsamenum(string s){
-    stringstream temp("");
-    for (int i = 0;i<s.length();i++){
-        if(s[i]!=s[i+1]){
-            temp << s[i];
+int check(int x[], int k,int a[])
+{
+    int sum = 0; 
+    for (int i = 0; i < k-1; i++)
+    {
+        if(a[i] && a[i+1]){
+            return 0;
+        }
+        if(a[i]==1){
+            sum+=x[i];
         }
     }
-    return temp.str();
-}
-
-void countmaxsame(string s){
-    // vector<int> freq;
-    // int maxDup = 0;
-
-    // for (int i = 0; i < s.length();i++) {
-    //     int dup = 1;
-    //     int pivot = i;
-    //     while ((s[pivot] - '0') == (s[i+1] - '0')) {
-    //         dup++;
-    //         i++;
+    // for (int i=0;i<k;i++){
+    //     if(a[i]==1){
+    //         sum+=x[i];
     //     }
-
-    //     if (dup > maxDup) {
-    //         maxDup = dup;
-    //         freq.clear();
-    //         freq.push_back(s[pivot] - '0');
-    //     } else if (dup == maxDup) {
-    //         freq.push_back(s[pivot] - '0');
-    //     }
-
     // }
-    // for(int i=0;i<freq.size();i++){
-    //     cout << freq[i] <<" ";
-    // }
-    // cout << endl;
-    int maxFreq = 0;
-    int freq = 1;
-    vector<int> freqArr(s.length(), 0);
-
-
-    for (int i = 0; i < s.length()-1; i++) {
-        if (s[i] == s[i+1]) {
-            freq++;
-            if(freq>maxFreq){
-                maxFreq = freq;
-            }
-            freqArr[i] = freq;
-        } else {
-            freq = 1;
-        }
-    }
-
-    bool visited[10] = {false};
-
-    for (int i = 0; i < s.length(); i++) {
-        if (freqArr[i] == maxFreq && s[i] - '0' == 0) {
-            cout << "0 ";
-            visited[s[i]-'0'] = true;
-        }
-    }
-
-    for (int i = 0; i < s.length(); i++) {
-        if (!visited[s[i] - '0'] && freqArr[i] == maxFreq) {
-            cout << s[i] << " ";
-            visited[s[i] - '0'] = true;
-        }
-    }
-    cout<<endl;
+    return sum;
 }
 
-int main(){
-    int n; 
-    cin>>n;
-    vector<int> arr(n);
-    string cum;
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
+// void sub(int x[], int k, int n)
+// {
+//     wow(x, k);
+//     int j = (k == 0) ? 1 : x[k] + 1;
+//     for (int i = j; i <= n; i++)
+//     {
+//         x[k + 1] = i;
+//         sub(x, k + 1, n);
+//     }
+// }
+// void permui(int x[], int k, int n)
+// {
+//     if (k == n)
+//     {
+//         wow(x, k);
+//     }
+//     else
+//     {
+//         for (int i = k ; i < n; i++)
+//         {
+//             // x[k] = x[i];
+//             swap(x[k],x[i]);
+//             permui(x, k + 1, n);
+//             swap(x[i],x[k]);
+//             // x[i] = x[k];
+//         }
+//     }
+// }
+void no5(int x[],int k,int n,int a[],int& m){
+    
+    if(k==n){
+        int find = check(x,k,a);
+        m = max(find,m);
     }
-    arr = countsort(arr);
-    cum = changetostr(arr);
-    cout<<cum<<endl;
-    countmaxsame(cum);
-    cum = popsamenum(cum);
-    cout<<cum;
+    else{
+        a[k] = 1;
+        no5(x,k+1,n,a,m);
+        a[k] = 0;
+        no5(x,k+1,n,a,m);
+    }
 }
+int main()
+{
+    int n = 10;
+    int arr[n] = {30,10,8,20,11,12,25,13,20,19};
+    int temp[n];
+    // int n = 4;
+    // int arr[n] = {1,2,3,4};
+    int Max = 0;
+    no5(arr, 0, n,temp,Max);
+    cout<<Max;
+}
+
