@@ -22,11 +22,6 @@ int check(int x[], int k,int a[])
             sum+=x[i];
         }
     }
-    // for (int i=0;i<k;i++){
-    //     if(a[i]==1){
-    //         sum+=x[i];
-    //     }
-    // }
     return sum;
 }
 
@@ -58,6 +53,7 @@ int check(int x[], int k,int a[])
 //         }
 //     }
 // }
+
 void no5(int x[],int k,int n,int a[],int& m){
     
     if(k==n){
@@ -76,8 +72,6 @@ int main()
     int n = 10;
     int arr[n] = {30,10,8,20,11,12,25,13,20,19};
     int temp[n];
-    // int n = 4;
-    // int arr[n] = {1,2,3,4};
     int Max = 0;
     no5(arr, 0, n,temp,Max);
     cout<<Max;
