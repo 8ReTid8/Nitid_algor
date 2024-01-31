@@ -35,24 +35,24 @@ int check(int x[], int k,int a[])
 //         sub(x, k + 1, n);
 //     }
 // }
-// void permui(int x[], int k, int n)
-// {
-//     if (k == n)
-//     {
-//         wow(x, k);
-//     }
-//     else
-//     {
-//         for (int i = k ; i < n; i++)
-//         {
-//             // x[k] = x[i];
-//             swap(x[k],x[i]);
-//             permui(x, k + 1, n);
-//             swap(x[i],x[k]);
-//             // x[i] = x[k];
-//         }
-//     }
-// }
+void permui(int x[], int k, int n)
+{
+    if (k == n)
+    {
+        wow(x, k);
+    }
+    else
+    {
+        for (int i = k ; i < n; i++)
+        {
+            // x[k] = x[i];
+            swap(x[k],x[i]);
+            permui(x, k + 1, n);
+            swap(x[i],x[k]);
+            // x[i] = x[k];
+        }
+    }
+}
 
 void no5(int x[],int k,int n,int a[],int& m){
     
@@ -69,11 +69,13 @@ void no5(int x[],int k,int n,int a[],int& m){
 }
 int main()
 {
-    int n = 10;
-    int arr[n] = {30,10,8,20,11,12,25,13,20,19};
+    // int arr[] = {30,10,8,20,11,12,25,13,20,19};
+    int arr[] = {1,2,3};
+    int n = sizeof(arr)/sizeof(arr[0]);
     int temp[n];
     int Max = 0;
-    no5(arr, 0, n,temp,Max);
-    cout<<Max;
+    // no5(arr, 0, n,temp,Max);
+    permui(arr, 0, n);
+    // cout<<Max;
 }
 
