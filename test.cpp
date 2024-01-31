@@ -4,7 +4,7 @@ using namespace std;
 
 void wow(int x[], int k)
 {
-    for (int i = 0; i < k; i++)
+    for (int i = 1; i <= k; i++)
     {
         cout << x[i] << " ";
     }
@@ -25,16 +25,16 @@ int check(int x[], int k,int a[])
     return sum;
 }
 
-// void sub(int x[], int k, int n)
-// {
-//     wow(x, k);
-//     int j = (k == 0) ? 1 : x[k] + 1;
-//     for (int i = j; i <= n; i++)
-//     {
-//         x[k + 1] = i;
-//         sub(x, k + 1, n);
-//     }
-// }
+void sub(int x[], int k, int n)
+{
+    wow(x, k);
+    int j = (k == 0) ? 1 : x[k] + 1;
+    for (int i = j; i <= n; i++)
+    {
+        x[k + 1] = i;
+        sub(x, k + 1, n);
+    }
+}
 void permui(int x[], int k, int n)
 {
     if (k == n)
@@ -75,7 +75,7 @@ int main()
     int temp[n];
     int Max = 0;
     // no5(arr, 0, n,temp,Max);
-    permui(arr, 0, n);
+    sub(arr, 0, n);
     // cout<<Max;
 }
 
