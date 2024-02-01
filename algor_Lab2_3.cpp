@@ -46,7 +46,6 @@ int binary_search(vector<int> a, int n, int k,int loop,int& count,int ans[])
             r = mid - 1;
         }
     }
-
     return -1;
 }
 
