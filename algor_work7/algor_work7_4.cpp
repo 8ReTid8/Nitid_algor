@@ -30,6 +30,10 @@ void sub(int x[], int k, int n,int& count)
     for (int i = j; i <= n; i++)
     {
         x[k + 1] = i;
+        // for(int k=0;k<n+1;k++){
+        //     cout<<x[k]<<" ";
+        // }
+        // cout<<endl;
         sub(x, k + 1, n,count);
     }
 }
@@ -37,7 +41,7 @@ void sub(int x[], int k, int n,int& count)
 int main(){
     int n;
     cin>>n;
-    int arr[n] = {0};
+    int arr[n+1] = {0};
     int count = 0;
     sub(arr,0,n,count);
     cout<<count;
