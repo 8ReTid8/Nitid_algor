@@ -18,9 +18,7 @@ int main(){
             Max = max(Max,counting[j]);
         }
     }
-    // for(int i=0;i<m+1;i++){
-    //     cout<<counting[i]<<" ";
-    // }
+    
     int come = INT_MAX;
     int out = INT_MIN;
     for(int i=0;i<m+1;i++){

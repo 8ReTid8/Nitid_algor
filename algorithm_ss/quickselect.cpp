@@ -27,7 +27,9 @@ int partition(int l,int r,int arr[]){
     swap(arr[i+1],arr[r]);
     return i+1;
 }
-int quickselect(int low,int high,int k,int arr[]){
+int quickselect(int low,int high,int k,int arr[],int& c){
+    
+    c++;
     if(low == high){
         return arr[low];
     }
@@ -36,18 +38,24 @@ int quickselect(int low,int high,int k,int arr[]){
         return arr[p]; 
     }
     else if(k < p){
-        return quickselect(low,p-1,k,arr);
+        
+        return quickselect(low,p-1,k,arr,c);
     }
     else{
-        // k = k - p + 1;
-        return quickselect(p+1,high,k,arr);
+        // k = k - p + 1; 
+        return quickselect(p+1,high,k,arr,c);
     }
 
 }
 int main(){
-    int arr[] = {1,5,10,4,8,2,6,9,20};
-    int n = sizeof(arr)/sizeof(arr[0]);
-    int k = 5;
-    cout<<quickselect(0,n-1,k-1,arr);
+    int n,k;
+    cin>>n>>k;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    int count = 0;
+   
+    cout<<quickselect(0,n-1,k-1,arr,count)<<" "<<k;
     return 0;
 }
