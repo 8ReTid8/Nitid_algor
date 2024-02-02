@@ -23,7 +23,7 @@ vector<int> countsort(vector<int> arr){
     return sortarr;
 }
 int main(){
-    vector<int> arr = {1,5,3,4,2};
+    vector<int> arr = {-1,-4,-3,-5,-2};
     arr = countsort(arr);
     for(int i=0;i<5;i++){
         cout<<arr[i]<<" ";

@@ -1,52 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int search(vector<int> arr,int n,int k){
-    int l = 0;
-    int r = n-1;
-    int m;
-    while(l<=r){
-        m = (l+r)/2;
-        if(k==arr[m]){
-            return m;
-        }
-        if(k>arr[m]){
-            l = m+1;
-        }
-        if(k<arr[m]){
-            r = m-1;
-        }
-    }
-    return -1;
-}
-vector<int> sort(vector<int> arr,int n){
-    int m = INT_MIN;
-    for(int i=0;i<n;i++){
-        m = max(m,arr[i]);
-    }
-    vector<int> count(m+1,0);
-    for(int i=0;i<n;i++){
-        count[arr[i]]++;
-    }
-    for(int i=1;i<m+1;i++){
-        count[i]+=count[i-1];
-    }
-    vector<int> temp(n);
-    for(int i=0;i<n;i++){
-        count[arr[i]]--;
-        temp[count[arr[i]]] = arr[i];
-    }
-    return temp;
-}
-
 int main(){
-    vector<int> arr = {5,4,3,2,1};
-    int n = 5;
-    arr = sort(arr,n);
+    int n;
+    cin>>n;
+    int A[n],B[n];
     for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
+        cin>>A[i];
+    }
+    for(int i=0;i<n;i++){
+        cin>>B[i];
+    }
+
+    int mA = INT_MIN;
+    int mB = INT_MIN;
+    for(int i=0;i<n;i++){
+        mA = max(mA,A[i]);
+        mB = max(mB,B[i]);
+    }
+
+    int countA[mA+1];
+    int countB[mB+1];
+
+    for(int i=0;i<n;i++){
+        countA[A[i]]=1;
+        countB[B[i]]=1;
+    }
+
+    
+    for(int i=0;i<n;i++){
+        if(countA[A[i]]==1&&countB[A[i]]==1){
+            cout<<A[i]<<" ";
+        }
     }
     cout<<endl;
-    cout<<search(arr,n,3);
+
+    for(int i=0;i<n;i++){
+        if(countA[A[i]]==1){
+            cout<<A[i]<<" ";
+            countA[A[i]]=0;
+            countB[A[i]]=0;
+        }
+    }
+    for(int i=0;i<n;i++){
+        if(countB[B[i]]==1){
+            cout<<B[i]<<" ";      
+            countB[B[i]]=0;
+        }
+    }
+
     return 0;
 }
