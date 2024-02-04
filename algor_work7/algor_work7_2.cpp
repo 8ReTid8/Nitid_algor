@@ -1,39 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
-void wow(int x[], int k)
+
+int lexicography(int *arr, int *nums, int n, int k, int c, bool used[])
 {
-    for (int i = 0; i < n; i++)
+    if (c == k)
     {
-        cout << x[i] << " ";
-    }
-    cout << endl;
-}
-void permui(int x[], int k, int n)
-{
-    if (k == n)
-    {
-        wow(x, k);
+        // for (int j = 0; j < n; j++)
+        // {
+        //     cout << arr[j] << " ";
+        // }
+        for (int i = 0; i < k; i++)
+        {
+            cout << nums[arr[i]] << " ";
+        }
+        cout << "\n";
+        return 1;
     }
     else
     {
-        for (int i = k ; i < n; i++)
+        int sum = 0;
+        for (int i = 0; i < n; i++)
         {
-            // x[k] = x[i];
-            swap(x[k],x[i]);
-            permui(x, k + 1, n);
-            swap(x[i],x[k]);
-            // x[i] = x[k];
+            if (!used[i])
+            {
+                arr[c] = i;
+                used[i] = true;
+                sum += lexicography(arr, nums, n, k, c + 1, used);
+                used[i] = false;
+            }
         }
+        return sum;
     }
 }
 
-int main(){
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
+int main()
+{
+    int n, k;
+    cin >> n >> k;
+    int nums[n];
+    for (int i = 1; i <= n; i++)
+    {
+        nums[i - 1] = i;
     }
-    permui(arr,0,n);
+
+    bool used[n] = {false};
+    cout << lexicography(new int[n], nums, n, k, 0, used);
+
     return 0;
 }

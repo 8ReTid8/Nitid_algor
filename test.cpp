@@ -4,7 +4,7 @@ using namespace std;
 
 void wow(int x[], int k)
 {
-    for (int i = 1; i <= k; i++)
+    for (int i = 0; i < k; i++)
     {
         cout << x[i] << " ";
     }
@@ -57,13 +57,14 @@ void permui(int x[], int k, int n)
 void no5(int x[],int k,int n,int a[],int& m){
     
     if(k==n){
-        int find = check(x,k,a);
-        m = max(find,m);
+        // int find = check(x,k,a);
+        // m = max(find,m);
+        wow(a,k);
     }
     else{
-        a[k] = 1;
-        no5(x,k+1,n,a,m);
         a[k] = 0;
+        no5(x,k+1,n,a,m);
+        a[k] = 1;
         no5(x,k+1,n,a,m);
     }
 }
@@ -74,8 +75,8 @@ int main()
     int n = sizeof(arr)/sizeof(arr[0]);
     int temp[n];
     int Max = 0;
-    // no5(arr, 0, n,temp,Max);
-    sub(arr, 0, n);
+    no5(arr, 0, n,temp,Max);
+    // sub(arr, 0, n);
     // cout<<Max;
 }
 

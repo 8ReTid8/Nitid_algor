@@ -1,49 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void print(int x[], int k,int& count)
+int subset(int Bool[], int nums[], int n, int k)
 {
-    if(k==0){
-        cout<<0<<endl;
-        count++;
-    }
-    else{
-        for (int i = 1; i <= k; i++)
-        {
-            cout << x[i] << " ";
-        }
-        count++;
-        cout << endl;
-    }
-}
-void sub(int x[], int k, int n,int& count)
-{
-    print(x, k,count);
-    int j;
-    if(k == 0){
-        j = 1;
-    }
-    else{
-        j = x[k]+1;
-    }
-
-    for (int i = j; i <= n; i++)
+    if (k == n)
     {
-        x[k + 1] = i;
-        // for(int k=0;k<n+1;k++){
-        //     cout<<x[k]<<" ";
-        // }
-        // cout<<endl;
-        sub(x, k + 1, n,count);
+        bool Zero = true;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (Bool[i] == 1)
+            {
+                cout << nums[i];
+                Zero = false;
+            }
+        }
+
+        if (Zero)
+        {
+            cout << "0";
+        }
+
+        cout << "\n";
+        return 1;
+    }
+    else
+    {
+        int sum = 0;
+        Bool[k] = 0;
+        sum += subset(Bool, nums, n, k + 1);
+        Bool[k] = 1;
+        sum += subset(Bool, nums, n, k + 1);
+
+        return sum;
     }
 }
 
-int main(){
+int main()
+{
     int n;
-    cin>>n;
-    int arr[n+1] = {0};
-    int count = 0;
-    sub(arr,0,n,count);
-    cout<<count;
+    cin >> n;
+    int arr[n],Bool[n];
+    for (int i = 1; i <= n; i++)
+    {
+        arr[i - 1] = (n+1) - i;
+    }
+    cout<<subset(Bool, arr, n, 0);
     return 0;
 }
