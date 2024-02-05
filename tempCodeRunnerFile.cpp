@@ -1,9 +1,10 @@
-int come = INT_MAX;
-    // int out = INT_MIN;
-    // for(int i=0;i<m+1;i++){
-    //     if(counting[i]==Max){
-    //         come = min(come,i);
-    //         out = max(out,i);
-    //     }
-    // }
-    // cout<<come<<" "<<out<<" "<<Max;
+        // for (int i = 0; i < k; i++)
+        // {
+        //     for (int j = 0; j < k; j++)
+        //     {
+        //         if (abs(x[i] - x[j]) == abs(j - i) || x[j] == x[i])
+        //         {
+        //             return 0;
+        //         }
+        //     }
+        // }

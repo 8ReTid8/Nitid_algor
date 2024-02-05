@@ -6,6 +6,12 @@ int check(int x[][2], int k,int Bool[][2])
     int sum2 = 0;
     for(int i=0;i<k;i++){
         for(int j=0;j<2;j++){
+            cout<<Bool[i][j]<<" ";
+        }
+        cout<<",";
+    }
+    for(int i=0;i<k;i++){
+        for(int j=0;j<2;j++){
             if(Bool[i][j]==1){
                 sum1+=x[i][j];
             }
@@ -14,6 +20,7 @@ int check(int x[][2], int k,int Bool[][2])
             }
         }
     }
+    cout<<abs(sum1-sum2)<<endl;
     return abs(sum1-sum2);
 }
 
