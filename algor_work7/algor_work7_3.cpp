@@ -1,39 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int lexicography(int *arr, int *nums, int n, int k, int c)
+int number = 0;
+
+void permute(int x[], int k, int n, int round, int Bool[])
 {
-    if (c == k)
+    if (k == n)
     {
-        for (int i = 0; i < k; i++)
+        int count = 0;
+        for (int i = 0; i < n; i++)
         {
-            cout << nums[arr[i]] << " ";
+            if (Bool[i] == 1)
+            {
+                count++;
+            }
         }
-        cout << "\n";
-        return 1;
-    }
-    else
-    {
-        int sum = 0;
-        for (int i = (c == 0) ? 0 : arr[c - 1] + 1; i < n; i++)
+        if (count == round)
         {
-            arr[c] = i;
-            sum += lexicography(arr, nums, n, k, c + 1);
+            for (int i = 0; i < n; i++)
+            {
+                if (Bool[i] == 1)
+                {
+                    cout << x[i] << " ";
+                }
+            }
+            cout << endl;
+            number++;
         }
-        return sum;
+        return;
     }
+
+    Bool[k] = 1;
+    permute(x, k + 1, n, round, Bool);
+    Bool[k] = 0;
+    permute(x, k + 1, n, round, Bool);
 }
 
 int main()
 {
     int n, k;
-    cin >> n >> k;
-    int nums[n];
-    for (int i = 1; i <= n; i++)
+    cin >> n;
+    cin >> k;
+    int x[n];
+    int Bool[n];
+    for (int i = 0; i < n; i++)
     {
-        nums[i - 1] = i;
+        x[i] = i + 1;
     }
 
-    cout << lexicography(new int[n], nums, n, k, 0);
+    permute(x, 0, n, k, Bool);
+    cout << number << endl;
     return 0;
 }
