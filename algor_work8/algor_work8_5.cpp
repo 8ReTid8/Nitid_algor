@@ -1,108 +1,79 @@
-#include <bits/stdc++.h>
-using namespace std;
-void sort(int arr[],int n){
-    int temp = 0;
-    for(int i=0;i<n;i++){
-        int Min = i;
-        for(int j=i+1;j<n;j++){
-            if(arr[Min]>arr[j]){
-                Min = j;
-            }
-        }
-        temp = arr[i];
-        arr[i] = arr[Min];
-        arr[Min] = temp;
-    }
-}
-
-int check(int x[], int k,int temp[])
+void permute(int X[], int start, int end, int check[], int max, int copyArr[])
 {
-    int sum = 0;
-    int count = 0;
-    for(int i=0;i<k;i++){
-        if(temp[i]==1){
-            count++;
+    cunny++;
+    if (start == end)
+    {
+        return;
+    }
+    check[start] = 1;
+    int sum = 0, prop = 0;
+    for (int i = 0; i < end; i++)
+    {
+        if (check[i] == 1)
+        {
+            sum += X[i];
+            prop += 1;
         }
     }
-    if(count<3){
-        return 0;
+    if (sum > max)
+    {
+        return;
     }
-    else{
-        count = 0;
-        for (int i = 0; i < k; i++)
-        {  
-            if(temp[i]==1){
-                sum+=x[i];
-                count++;
+    else if ((max - maxNumber > max - sum) && prop >= 3)
+    {
+        maxNumber = sum;
+        created = true;
+        int t = 0;
+        fill(copyArr, copyArr + end, 0);
+        for (int i = 0; i < end; i++)
+        {
+            if (check[i] == 1)
+            {
+                copyArr[t] = X[i];
+                t++;
+            }
+        }
+        permute(X, start + 1, end, check, max, copyArr);
+        check[start] = 0;
+        permute(X, start + 1, end, check, max, copyArr);
+    }
+    else
+    {
+        permute(X, start + 1, end, check, max, copyArr);
+        check[start] = 0;
+        permute(X, start + 1, end, check, max, copyArr);
+    }
+}
+
+int main()
+{
+    int n = 8, max = 600;
+    int X[] = {136, 411, 211, 200, 275, 189, 232, 375};
+    quickSort(X, 0, n - 1);
+    int *check = new int[n]{0};
+    int copy[n];
+    fill(copy, copy + n, 0);
+    permute(X, 0, n, check, max, copy);
+    if (!created)
+    {
+        cout << 0 << endl
+             << 0 << endl
+             << 0 << endl;
+    }
+    else
+    {
+        for (int i = 0; i < n; i++)
+        {
+            if (copy[i] != 0)
+            {
+                cout << copy[i] << endl;
+            }
+            else
+            {
+                break;
             }
         }
     }
-    return sum;
-}
-
-void binary(int x[],int k,int n,int temp[],int& Max,int money,int arrMax[],int& Sum){
-    cout<<k+1;
-    if(k==n){
-        // int find = check(x,k,temp);
-        // if(find>Max && find<=money){
-        //     Max = find;
-        //     for(int i=0;i<n;i++){
-        //         arrMax[i] = temp[i];
-        //     }
-        // }
-        return ;
-    }
-    int count = 0;
-    for(int i=0;i<k;i++){
-        if(temp[i]==1){
-            count++;
-        }
-    }
-    if(count<3){
-        return ;
-    }
-
-    if(Sum>Max&&Sum<=money){
-        Max = Sum;
-        for(int i=0;i<n;i++){
-            arrMax[i] = temp[i];
-        } 
-    }
-    
-    temp[k] = 1;
-    Sum+=x[k];
-    binary(x,k+1,n,temp,Max,money,arrMax,Sum);
-    temp[k] = 0;
-    Sum-=x[k];
-    binary(x,k+1,n,temp,Max,money,arrMax,Sum);
-    
-}
-
-int main(){
-    int n,money;
-    cin>>n>>money;
-    int arr[n],temp[n],arrMax[n];
-    int Max = 0;
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    sort(arr,n);
-    int Sum = 0,count = 0;
-    binary(arr,0,n,temp,Max,money,arrMax,Sum);
-    
-    cout<<"ans :"<<endl;
-    if(Max==0){
-        for(int i=0;i<3;i++){
-            cout<<0<<endl; 
-        }
-    }
-    else{
-        for(int i=0;i<n;i++){
-            if(arrMax[i]==1){
-                cout<<arr[i]<<endl;
-            }
-        }
-    }
-
+    cout<<cunny<<endl;
     return 0;
 }
