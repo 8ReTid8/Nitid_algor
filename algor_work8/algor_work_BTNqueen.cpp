@@ -3,7 +3,7 @@ using namespace std;
 
 int n = 4, X[4];
 
-void nQ(int k)
+void nqueen(int k)
 {
     if (k == n)
     {
@@ -29,7 +29,7 @@ void nQ(int k)
             }
             if (broke)
             {
-                nQ(k + 1);
+                nqueen(k + 1);
             }
         }
     }
@@ -37,6 +37,6 @@ void nQ(int k)
 
 int main()
 {
-    nQ(0);
+    nqueen(0);
     return 0;
 }

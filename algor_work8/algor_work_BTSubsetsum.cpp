@@ -45,6 +45,10 @@ using namespace std;
 
 void subsetsum(int Bool[], int nums[], int n, int k,int target, int sum)
 {
+    for(int i=0;i<n;i++){
+        cout<<Bool[i]<<" ";
+    }
+    cout<<endl;
     if (k == n)
     {
         if (sum == target)
