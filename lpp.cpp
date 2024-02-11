@@ -3,11 +3,6 @@ using namespace std;
 
 void back(int n, int k, int tar, int arr[], int count)
 {
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
     if (k == n)
     {
         if (count == tar)
@@ -19,7 +14,7 @@ void back(int n, int k, int tar, int arr[], int count)
             cout << endl;
         }
     }
-    if (count <= tar)
+    else if (count <= tar)
     {
         arr[k] = 0;
         back(n, k + 1, tar, arr, count);
