@@ -3,8 +3,9 @@ using namespace std;
 
 int n = 4, X[4];
 
-void nqueen(int k)
+void nqueen(int k,int Bool[])
 {
+    
     if (k == n)
     {
         for (int i = 0; i < k; i++)
@@ -29,7 +30,8 @@ void nqueen(int k)
             }
             if (broke)
             {
-                nqueen(k + 1);
+                Bool[k] = 1;
+                nqueen(k + 1,Bool);
             }
         }
     }
@@ -37,6 +39,6 @@ void nqueen(int k)
 
 int main()
 {
-    nqueen(0);
+    nqueen(0,new int[n]{0});
     return 0;
 }

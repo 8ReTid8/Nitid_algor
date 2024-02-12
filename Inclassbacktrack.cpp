@@ -1,9 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
-void queen(int k, int n, int x[], int &count, int Bool[])
+int counot = 0;
+void queen(int k, int n, int x[], int Bool[])
 {
     if (k == n)
     {
+        counot++;
+        for (int i = 0; i < k; i++)
+        {
+            cout << x[i] << " ";
+        }
+        cout << endl;
         for (int i = 0; i < k; i++)
         {
             for (int j = 0; j < i; j++)
@@ -16,7 +23,7 @@ void queen(int k, int n, int x[], int &count, int Bool[])
         }
         for (int i = 0; i < k; i++)
         {
-            cout << x[i] << " ";
+            cout <<"ans" <<x[i] << " ";
         }
         cout << endl;
     }
@@ -28,7 +35,7 @@ void queen(int k, int n, int x[], int &count, int Bool[])
             {
                 Bool[row] = 1;
                 x[k] = row;
-                queen(k + 1, n, x, count, Bool);
+                queen(k + 1, n, x, Bool);
                 Bool[row] = 0;
             }
         }
@@ -37,9 +44,9 @@ void queen(int k, int n, int x[], int &count, int Bool[])
 
 int main()
 {
-    int count = 0;
     int n = 4;
     int arr[4];
     int Bool[4] = {0};
-    queen(0, n, arr, count, Bool);
+    queen(0, n, arr, Bool);
+    cout<<counot;
 }

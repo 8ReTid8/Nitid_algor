@@ -5,25 +5,25 @@ using namespace std;
 int n;
 int minDiff = INT_MAX;
 
-void subset(int k, int sumA, int sumB, int gift1[], int gift2[]) {
+void subset(int k, int momoi, int midori, int gift1[], int gift2[]) {
     if (k == n) {
-        minDiff = min(abs(sumA-sumB), minDiff);
+        minDiff = min(abs(momoi-midori), minDiff);
         return;
     }
     
-    sumA += gift1[k];
-    sumB += gift2[k];
+    momoi += gift1[k];
+    midori += gift2[k];
     
-    if (abs(sumA-sumB) < minDiff) {
-        subset(k+1, sumA, sumB, gift1, gift2);
+    if (abs(momoi-midori) < minDiff) {
+        subset(k+1, momoi, midori, gift1, gift2);
     }
     
-    sumA -= gift1[k];
-    sumB -= gift2[k];
+    momoi -= gift1[k];
+    midori -= gift2[k];
     
-    sumA += gift2[k];
-    sumB += gift1[k];
-    subset(k+1, sumA, sumB, gift1, gift2);
+    momoi += gift2[k];
+    midori += gift1[k];
+    subset(k+1, momoi, midori, gift1, gift2);
 }
     
 int main() {
