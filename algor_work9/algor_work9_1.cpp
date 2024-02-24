@@ -30,8 +30,8 @@ void highvalue(int total,int n,item arr[]){
         }
         if(weight>total){
             int temp = total-(weight-arr[i].w);
-            money+=arr[i].value*temp;
             arr[i].weightuse=temp/arr[i].w;
+            money+=arr[i].v*arr[i].weightuse;
             break;
         }
     }
