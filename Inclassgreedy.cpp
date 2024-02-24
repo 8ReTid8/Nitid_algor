@@ -39,27 +39,27 @@ using namespace std;
 //     }
 // }
 
-// int main(){
-//     int n = 7;
-//     // int arr[] = {2,25,47,16,14};
-//     int arr[] = {4,12,13,29,31,32,50};
-//     sort(arr,n);
-//     int Bool[n] = {0};
-//     greed(arr,n,0,Bool);
-//     cout<<Min<<" ";
-//     int sum1 = arr[0];
-//     int sum2 = 0;
-//     for(int i=1;i<n;i++){
-//         if(sum1>sum2){
-//             sum2+=arr[i];
-//         }
-//         else{
-//             sum1+=arr[i];
-//         }
-//     }
-//     cout<<abs(sum1-sum2);
-//     return 0;
-// }
+int main(){
+    int n = 7;
+    // int arr[] = {2,25,47,16,14};
+    int arr[] = {4,12,13,29,31,32,50};
+    sort(arr,n);
+    int Bool[n] = {0};
+    greed(arr,n,0,Bool);
+    cout<<Min<<" ";
+    int sum1 = arr[0];
+    int sum2 = 0;
+    for(int i=1;i<n;i++){
+        if(sum1>sum2){
+            sum2+=arr[i];
+        }
+        else{
+            sum1+=arr[i];
+        }
+    }
+    cout<<abs(sum1-sum2);
+    return 0;
+}
 int c=0;
 void DFS(int i,int arr[][10],int visit[],int n){
     
