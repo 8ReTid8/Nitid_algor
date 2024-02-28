@@ -52,6 +52,10 @@ int main()
         cin >> arr[i].start >> arr[i].end;
     }
     sort(arr, arr + n, compareItem);
+    for (int i = 0; i < n; ++i)
+    {
+        cout<< arr[i].start<<" "<<arr[i].end<<endl;
+    }
     paltform(n,arr);
     return 0;
 }
