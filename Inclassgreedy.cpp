@@ -60,6 +60,7 @@ int main(){
     cout<<abs(sum1-sum2);
     return 0;
 }
+
 int c=0;
 void DFS(int i,int arr[][10],int visit[],int n){
     
