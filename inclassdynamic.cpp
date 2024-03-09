@@ -18,12 +18,7 @@ using namespace std;
 //     return 0;
 // }
 vector<vector<int>> o(100, vector<int>(100, -1));
-// typedef struct
-// {
-//     int index = -1;
-//     int value = -1;
-// }temp;
-// temp a[100];
+
 int f(int n, int k)
 {
     if (n >= k)
@@ -101,16 +96,19 @@ int main()
     {
         for (int j = 0; j <= 4; j++)
         {
-            if (i == j || j == 0 || j == 1)
+            if (i >= j)
             {
-                fi[i][j] = 1;
-            }
-            else
-            {
-                fi[i][j] = fi[i - 1][j] + fi[i - 1][j - 2];
+                if (i == j || j == 0 || j == 1)
+                {
+                    fi[i][j] = 1;
+                }
+                else
+                {
+                    fi[i][j] = fi[i - 1][j] + fi[i - 1][j - 2];
+                }
             }
         }
     }
-    cout<<fi[6][4];
+    cout << fi[6][4];
     return 0;
 }
