@@ -1,5 +1,7 @@
-  // if (start == end)
+int m;
+    // cin >> m;
+    // int ans[m];
+    // for (int i = 0; i < m; i++)
     // {
-    //     ans = min(count, ans);
-    //     return;
+    //     cin >> ans[i];
     // }

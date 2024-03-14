@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int ans = INT_MAX;
-void DFS(int n, vector<int> adj[], int start, int end, vector<int> visited, int count)
+void DFS(vector<int> adj[], int start, int end, vector<int> visited, int count)
 {
     count++;
     if (start == end)
@@ -15,7 +15,7 @@ void DFS(int n, vector<int> adj[], int start, int end, vector<int> visited, int 
         if (visited[adj[start][i]] == 0)
         {
             // cout<<adj[start][i]<<" ";
-            DFS(n, adj, adj[start][i], end, visited, count);
+            DFS(adj, adj[start][i], end, visited, count);
         }
     }
     visited[start] = 0;
@@ -50,7 +50,7 @@ int main()
     // }
     int start, end;
     cin >> start >> end;
-    DFS(n, adj, start, end, visited, -1);
+    DFS(adj, start, end, visited, -1);
     cout << ans;
     return 0;
 }
