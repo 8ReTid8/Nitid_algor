@@ -3,19 +3,21 @@ using namespace std;
 vector<vector<int>> temp(100,vector<int>(100,-1));
 
 int dynamic(int n,int k,int count,vector<vector<int>> arr){
-    count += arr[n][k];
     if(n==0&&k==0){
+        count += arr[n][k];
         return count;
     }
     else if(n<0||k<0){
         return 0;
     }
-    else if(temp[n][k]!=-1){
-        return temp[n][k];
-    }
+    // else if(temp[n][k]!=-1){
+    //     return temp[n][k];
+    // }
     else{
-        temp[n][k] = max(dynamic(n-1,k,count,arr),dynamic(n,k-1,count,arr));
-        return temp[n][k];
+        count += arr[n][k];
+        // temp[n][k] = max(dynamic(n-1,k,count,arr),dynamic(n,k-1,count,arr));
+        // return temp[n][k];
+        return max(dynamic(n-1,k,count,arr),dynamic(n,k-1,count,arr));
     }
 }
 int main(){
@@ -30,3 +32,4 @@ int main(){
     cout<<dynamic(n-1,m-1,0,arr);
     return 0;
 }
+
