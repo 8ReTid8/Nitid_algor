@@ -12,8 +12,7 @@ double findmean(int n,double arr[]){
         temp[n] = arr[n];
         return temp[n];
     }
-    else{
-        // temp[n] = (n*temp[n-1]+arr[n])/(i+1);
+    else {
         temp[n] = (n*findmean(n-1,arr)+arr[n])/(n+1);
         return temp[n];
     }
@@ -22,8 +21,8 @@ int main(){
     int n;
     cin>>n;
     double arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
+    for(int i=0;i<n;i++){   
+        cin>>arr[i];                   
     }
     cout<<findmean(n-1,arr);
     return 0;
