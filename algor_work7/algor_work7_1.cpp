@@ -10,7 +10,7 @@ void wow(string x, int k)
 }
 void permui(string x, int k, int n)
 {
-    if (k == n)
+    if (k == n)  
     {
         wow(x, k);
     }

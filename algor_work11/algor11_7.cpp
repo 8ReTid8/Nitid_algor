@@ -2,9 +2,9 @@
 using namespace std;
 
 vector<vector<int>> temp(100,vector<int>(100,-1));
-int dynamic(int n,int k,int count){
+int dynamic(int n,int k){
     if(n==1&&k==1){
-        return count;
+        return 1;
     }
     else if(n==0||k==0){
         return 0;
@@ -13,15 +13,13 @@ int dynamic(int n,int k,int count){
         return temp[n][k];
     }
     else{
-        temp[n][k] = max(dynamic(n-1,k,count+1),dynamic(n,k-1,count+1));
+        temp[n][k] = dynamic(n-1,k)+dynamic(n,k-1);
         return temp[n][k];
     }
 }
 int main(){
     int n,k;
     cin>>n>>k;
-    // n = 1||0;
-    // cout<<n;
-    cout<<dynamic(n,k,0);
+    cout<<dynamic(n,k);
     return 0;
 }
